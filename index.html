@@ -6,9 +6,46 @@
 		<link href="/src/style.css" rel="stylesheet" />
 	</head>
 	<body>
-		<div class="relative h-screen w-screen">
+		<div x-data class="relative h-screen w-screen">
 			<div class="relative h-full w-full overflow-y-auto overflow-x-hidden">
 				<!-- navbar -->
+				<div
+					x-show="$store.search.isSearching"
+					class="fixed top-0 left-0 z-50 h-screen w-screen bg-black/10 flex items-center justify-center"
+				>
+					<div
+						class="absolute top-0 left-0 h-screen w-screen"
+						@click="$store.search.setSearching(false)"
+					></div>
+					<div class="relative h-16 w-md border border-gray-400 rounded-xl bg-white mt-4 flex">
+						<div class="relative flex items-center">
+							<div class="relative w-16 flex justify-center items-center">
+								<svg
+									width="19"
+									height="19"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="feather feather-search"
+								>
+									<circle cx="11" cy="11" r="8"></circle>
+									<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+								</svg>
+							</div>
+						</div>
+						<div class="relative h-full w-full">
+							<input
+								type="text"
+								autofocus
+								class="outline-none h-full w-full bg-transparent"
+								placeholder="Search for Your favorites"
+							/>
+						</div>
+					</div>
+				</div>
 				<div class="absolute top-0 h-20 w-full z-20">
 					<div class="relative h-full w-full flex items-center justify-between px-16">
 						<div class="relative flex items-center gap-16">
@@ -52,7 +89,7 @@
 							<div class="relative flex items-center gap-16">
 								<div class="relative flex items-center gap-8">
 									<div class="relative flex items-center gap-8">
-										<div class="relative">
+										<div class="relative cursor-pointer" @click="$store.search.setSearching(true)">
 											<svg
 												width="20"
 												height="20"
@@ -220,19 +257,113 @@
 						</div>
 					</div>
 					<div class="relative min-h-screen w-screen px-16 flex items-center">
-						<div class="relative h-96 w-full flex justify-center">
+						<div class="relative h-96 w-full flex justify-center items-center gap-16">
 							<div
-								class="relative w-96 h-full flex"
+								class="relative w-72 h-full flex shadow-xl shadow-gray-100"
 								style="
 									background: url(https://i.pinimg.com/1200x/eb/20/ff/eb20ff8dc69d3bfa038687ef1d2f5b86.jpg)
-										center / contain no-repeat;
+										center / cover no-repeat;
 								"
-							></div>
-							<div class=""></div>
+							>
+								<div class="absolute top-2 right-2 h-10 w-10 flex items-center justify-center">
+									<svg
+										width="20"
+										height="20"
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										class="feather feather-heart"
+									>
+										<path
+											d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+										></path>
+									</svg>
+								</div>
+							</div>
+							<div class="w-md h-auto">
+								<div class="relative">
+									<div class="relative text-xl text-gray-700 font-bold">Casual</div>
+									<div class="relative text-3xl mt-2 tracking-wide font-bold text-black">
+										#Summer Bloom Dress – by Elara
+									</div>
+								</div>
+								<div class="relative text-gray-600 font-medium mt-4 tracking-wide">
+									A breezy, floral pastel midi perfect for casual brunches, strolls, or weekend
+									getaways.
+								</div>
+								<div class="relative mt-8">
+									<div class="relative flex gap-8 items-center">
+										<div class="relative text-center">
+											<div class="relative text-gray-600 text-sm">Rental Price</div>
+											<div class="relative mt-2">
+												<span class="text-sm">Rs.</span>
+												<span class="high-lighted-text">299</span> / week
+											</div>
+										</div>
+										<div class="relative h-10 w-[2px] bg-gray-300"></div>
+										<div class="relative text-center">
+											<div class="relative text-gray-600 text-sm">Ratings</div>
+											<div class="relative mt-2 flex gap-3 items-center">
+												<span>
+													<svg
+														width="17"
+														height="17"
+														viewBox="0 0 24 24"
+														fill="currentColor"
+														stroke="currentColor"
+														stroke-width="2"
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														class="feather feather-star"
+													>
+														<polygon
+															points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+														></polygon></svg
+												></span>
+												<span class="high-lighted-text">4.8</span>
+											</div>
+										</div>
+										<div class="relative h-10 w-[2px] bg-gray-300"></div>
+										<div class="relative text-center">
+											<div class="relative text-gray-600 text-sm">Sizes</div>
+											<div class="relative mt-2 flex items-center gap-2">
+												<span class="high-lighted-text">S</span>,
+												<span class="high-lighted-text">M</span>,
+												<span class="high-lighted-text">L</span>
+											</div>
+										</div>
+									</div>
+									<div class="relative flex mt-8">
+										<div class="relative btn">
+											<span>Rent Now</span>
+											<span>
+												<svg
+													width="17"
+													height="17"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													class="feather feather-shopping-bag"
+												>
+													<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+													<line x1="3" y1="6" x2="21" y2="6"></line>
+													<path d="M16 10a4 4 0 0 1-8 0"></path></svg
+											></span>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script type="module" src="./src/main.js"></script>
 	</body>
 </html>
