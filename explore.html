@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="/src/style.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div x-data class="relative h-screen w-screen">
+			<div class="relative h-full w-full overflow-y-auto overflow-x-hidden scroll-smooth">
+				<div class="relative h-20 w-full z-20">
+					<div class="relative h-full w-full flex items-center justify-between px-16">
+						<div class="relative flex items-center gap-16">
+							<div class="relative font-bold text-xl">WOMAN</div>
+							<div
+								class="relative flex items-center gap-8 font-medium text-sm text-gray-600 *:cursor-pointer"
+							>
+								<div class="relative hover:text-black group duration-200">
+									<span>Home</span>
+									<div
+										class="absolute group-hover:w-3/4 rounded-full -bottom-2 w-0 h-[4px] bg-black duration-200"
+									></div>
+								</div>
+								<div class="relative hover:text-black group duration-200">
+									<span>Explore / Categories</span>
+									<div
+										class="absolute group-hover:w-3/4 rounded-full -bottom-2 w-0 h-[4px] bg-black duration-200"
+									></div>
+								</div>
+								<div class="relative hover:text-black group duration-200">
+									<span>How it works</span>
+									<div
+										class="absolute group-hover:w-3/4 rounded-full -bottom-2 w-0 h-[4px] bg-black duration-200"
+									></div>
+								</div>
+								<div class="relative hover:text-black group duration-200">
+									<span>Testimonials</span>
+									<div
+										class="absolute group-hover:w-3/4 rounded-full -bottom-2 w-0 h-[4px] bg-black duration-200"
+									></div>
+								</div>
+								<div class="relative hover:text-black group duration-200">
+									<span>Contact</span>
+									<div
+										class="absolute group-hover:w-3/4 rounded-full -bottom-2 w-0 h-[4px] bg-black duration-200"
+									></div>
+								</div>
+							</div>
+						</div>
+						<div class="relative">
+							<div class="relative flex items-center gap-16">
+								<div class="relative flex items-center gap-8">
+									<div class="relative flex items-center gap-8">
+										<div class="relative">
+											<svg
+												width="20"
+												height="20"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												class="feather feather-shopping-bag"
+											>
+												<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+												<line x1="3" y1="6" x2="21" y2="6"></line>
+												<path d="M16 10a4 4 0 0 1-8 0"></path>
+											</svg>
+										</div>
+									</div>
+									<div class="relative flex">
+										<div class="relative btn">Login</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- sub navbar -->
+				<div class="relative h-16 w-full bg-transparent">
+					<div class="relative">
+						<div class="relative flex justify-between">
+							<div class="relative">Filter goes here</div>
+						</div>
+					</div>
+				</div>
+				<!-- content -->
+				<div class="relative w-full px-16">
+					<div class="relative w-full grid grid-cols-5 gap-8">
+						<template x-for="product in $store.products.products">
+							<div class="relative h-auto w-full group">
+								<div class="relative">
+									<div
+										class="absolute bottom-0 pb-4 px-4 z-10 h-10 w-full flex items-center justify-between"
+									>
+										<div class="relative flex items-center gap-2">
+											<template x-for="color in product.available_colors" :key="color.hex">
+												<div
+													class="h-4 w-4 border border-gray-200 opacity-60"
+													:style="'background-color: ' + color.hex"
+												></div>
+											</template>
+										</div>
+										<div class="relative flex items-center gap-2 text-sm font-bold">
+											<template x-for="size in product.sizes" :key="product.name + size">
+												<div x-text="size"></div>
+											</template>
+										</div>
+									</div>
+									<img :src="product.images[0]" class="h-auto w-full" alt="" />
+								</div>
+								<div class="relative pt-3">
+									<div x-text="product.name" class="text-sm tracking-wide"></div>
+									<div class="relative text-sm mt-1" x-text="'Rs.' + product.rental_price"></div>
+								</div>
+							</div>
+						</template>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="module" src="./src/main.js"></script>
+	</body>
+</html>

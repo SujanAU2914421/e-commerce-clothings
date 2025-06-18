@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<div x-data class="relative h-screen w-screen">
-			<div class="relative h-full w-full overflow-y-auto overflow-x-hidden">
+			<div class="relative h-full w-full overflow-y-auto overflow-x-hidden scroll-smooth">
 				<!-- navbar -->
 				<div
 					x-show="$store.search.isSearching"
@@ -133,7 +133,7 @@
 				</div>
 				<!-- contents -->
 				<div class="relative h-auto">
-					<div class="h-screen w-screen">
+					<div class="h-screen w-full">
 						<div class="relative w-full h-full flex">
 							<div class="relative w-1/2 h-full flex items-center">
 								<div class="relative px-16">
@@ -182,7 +182,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="relative min-h-screen w-screen px-56">
+					<div class="relative min-h-screen w-full px-56">
 						<div class="relative w-full">
 							<div class="relative font-bold text-xl text-center">Our Categories</div>
 							<div
@@ -256,10 +256,12 @@
 							</div>
 						</div>
 					</div>
-					<div class="relative min-h-screen w-screen px-16 flex items-center">
-						<div class="relative h-96 w-full flex justify-center items-center gap-16">
+					<div class="relative min-h-screen w-full px-16 flex items-center justify-center">
+						<div
+							class="relative h-auto w-auto flex justify-center items-center gap-16 p-8 border rounded-2xl border-gray-400"
+						>
 							<div
-								class="relative w-72 h-full flex shadow-xl shadow-gray-100"
+								class="relative w-72 h-96 flex shadow-xl shadow-gray-100"
 								style="
 									background: url(https://i.pinimg.com/1200x/eb/20/ff/eb20ff8dc69d3bfa038687ef1d2f5b86.jpg)
 										center / cover no-repeat;
@@ -361,9 +363,20 @@
 							</div>
 						</div>
 					</div>
+					<div class="relative h-auto w-full px-16">
+						<div class="relative flex items-center gap-8">
+							<div class="relative w-1/2 h-96 bg-gray-300 rounded-md">
+								<div class="relative"></div>
+							</div>
+							<div class="relative w-1/2 h-96 bg-gray-300 rounded-md"></div>
+						</div>
+					</div>
+					<!-- footer -->
+					<div class="relative mt-16"></div>
 				</div>
 			</div>
 		</div>
+		<script type="module" src="./src/alpine.js"></script>
 		<script type="module" src="./src/main.js"></script>
 	</body>
 </html>
